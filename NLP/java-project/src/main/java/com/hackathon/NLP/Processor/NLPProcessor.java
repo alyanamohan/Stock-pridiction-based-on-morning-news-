@@ -53,7 +53,14 @@ public class NLPProcessor {
 //        return list;
 //    }
     public static void main(String[] arg) throws Exception {
-        process("[ \"Come on, lets play together\",\"Team performed well overall\" ]");
+//        process("[ \"Come on, lets play together\",\"Team performed well overall\" ]");
+        double[] arr = {-0.03480425839330703,0.07910192950176387,0.7233322451735928,0.1659819820667019};
+        double[] arr2 = {0.0,0.0,0.0,0.0};
+        double[] answer = new FFTbase().fft(arr,arr2, true);
+
+        for(int i =0; i < answer.length; i++){
+            System.out.println(answer[i]);
+        }
     }
     public static void process(String toParse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
