@@ -30,4 +30,11 @@ class Ticker:
             except ValueError:
                 raise "Invalid Result"
 
-        self.urls = []
+        self.urls = ["https://"]
+
+    def toJson(self):
+        return json.dumps({
+            "name": self.name,
+            "symbol": self.symbol,
+            "urls": self.urls
+        })
