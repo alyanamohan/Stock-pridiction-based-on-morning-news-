@@ -41,6 +41,3 @@ class Ticker:
             "urls": self.urls,
             "articles": self.articles
         })
-
-
-Ticker('asdf')
