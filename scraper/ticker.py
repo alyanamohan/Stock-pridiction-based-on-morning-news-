@@ -5,10 +5,11 @@ import json
 class Ticker:
 
     # http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=AAPL&lang=en
-    def __init__(self, symbol='', name=''):
+    def __init__(self, symbol='', name='', ):
 
         self.name = name
         self.symbol = symbol
+        self.articles = []
 
         #! INVALID: Make sure both aren't empty
         if symbol == '' and name == '':
@@ -37,7 +38,8 @@ class Ticker:
         return json.dumps({
             "name": self.name,
             "symbol": self.symbol,
-            "urls": self.urls
+            "urls": self.urls,
+            "articles": self.articles
         })
 
 
