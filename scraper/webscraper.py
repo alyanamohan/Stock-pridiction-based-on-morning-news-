@@ -46,31 +46,29 @@ def get_forbes_URLs():
     return articles
 
 
-def get_forbes_article_info(url):
+def retrieve_forbes_article_data(article):
 
     article_text = ''
     article_ticker = ''
     article_paragraphs = []
 
+    browser.get((article.url))
 
-    browser.get((url))
-    article_text_section = browser.find_element_by_xpath('//*[@id="article-container-0"]/div[2]/div[2]/article-body-container/div/div')
-    article_paragraph_tags = article_text_section.find_elements_by_tag_name('p')
+    try:
+        article_text_section = browser.find_element_by_xpath('//*[@id="article-container-0"]/div[2]/div[2]/article-body-container/div/div')
+        article_paragraph_tags = article_text_section.find_elements_by_tag_name('p')
+    except:
+        return
 
     for paragraph in article_paragraph_tags:
 
         if '[+]' in paragraph.text:
             continue
 
-        filtered_text = paragraph.text.replace('u\'\'', '')
-        filtered_text = paragraph.text.replace('u\'', '')
         article_paragraphs.append(paragraph.text)
 
 
 
 forbes_URLs = get_forbes_URLs()
 for article in forbes_URLs:
-
-    print(article.headline)
-    print(article.url)
-    print('')
+    retrieve_forbes_article_data(article)
