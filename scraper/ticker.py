@@ -12,7 +12,7 @@ class Ticker:
 
         #! INVALID: Make sure both aren't empty
         if symbol == '' and name == '':
-            raise 'Error'
+            raise BaseException('Error')
 
         # ? Get company name/ticker as needed
         if symbol == '' or name == '':
@@ -27,8 +27,9 @@ class Ticker:
             try:
                 self.name = data['ResultSet']['Result'][0]['name']
                 self.symbol = data['ResultSet']['Result'][0]['symbol']
-            except ValueError:
-                raise "Invalid Result"
+
+            except:
+                raise BaseException("Invalid Result")
 
         self.urls = ["https://"]
 
@@ -38,3 +39,6 @@ class Ticker:
             "symbol": self.symbol,
             "urls": self.urls
         })
+
+
+Ticker('asdf')
