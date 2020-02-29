@@ -1,7 +1,6 @@
 package com.hackathon.NLP.Endpoints;
 
-import Responses.StockResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.hackathon.NLP.Responses.StockResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static spark.Spark.*;

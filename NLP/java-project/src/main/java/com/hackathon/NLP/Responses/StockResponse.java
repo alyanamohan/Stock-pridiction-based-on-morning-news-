@@ -1,4 +1,4 @@
-package Responses;
+package com.hackathon.NLP.Responses;
 
 public class StockResponse {
     public String ticker;
