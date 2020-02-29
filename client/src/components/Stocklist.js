@@ -1,12 +1,91 @@
-import React, { useState, useEffect } from 'react'
-import Ticker from './Ticker'
-import 'styles/components/stocklist.scss'
+import React from 'react'
 
-import Paper from '@material-ui/core/Paper'
+import { makeStyles, Card, CardContent, Typography } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 
-import { makeStyles } from '@material-ui/core/styles'
+const seedData = [
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    },
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    },
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    },
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    },
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    },
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    },
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    },
+    {
+        symbol: 'ITNL',
+        name: 'Intel Corporation',
+        currency: 'USD',
+        price: 55.52,
+        trend: 0.9,
+        articles: [
+            { url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }
+        ]
+    }
+]
 
 const useStyles = makeStyles(({ spacing, palette }) => ({
     root: {
@@ -17,53 +96,46 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
         textAlign: 'center',
         color: palette.text.secondary
     },
-    centerer: {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)'
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)'
+    },
+    title: {
+        fontSize: 14
+    },
+    pos: {
+        marginBottom: 12
     }
 }))
 
-const Stocklist = props => {
-    const [date, setDate] = useState(null)
+const StockList = props => {
     const classes = useStyles()
 
-    useEffect(() => {
-        if (!date) {
-            setDate(new Date())
-        }
-    }, [date])
-
-    // * Grab ticker array from props
-    const { tickers } = props
-
-    // * Render stock list
     return (
-        date && (
-            <div className={classes.centerer}>
-                <div className={classes.root}>
-                    <Grid container spacing={3}>
-                        <Grid item xs stretch>
-                            <Paper className={classes.paper}>
-                                <Typography>
-                                    Stock predictions for {date.getMonth()} / {date.getDate()} /{' '}
-                                    {date.getFullYear()}
+        <div className={classes.root}>
+            <Grid container spacing={3} justify="center">
+                {seedData.map(stock => (
+                    <Grid item xs={3}>
+                        <Card>
+                            <CardContent>
+                                <Typography className={classes.title}>
+                                    {stock.name} - {stock.symbol}
                                 </Typography>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs>
-                            <Paper className={classes.paper}>
-                                {tickers.map(stock => (
-                                    <Ticker stock={stock} key={stock} />
-                                ))}
-                            </Paper>
-                        </Grid>
+                                <Typography variant="h5" component="h2">
+                                    {stock.trend > 0.5 ? (
+                                        <div>Arrow Up</div>
+                                    ) : (
+                                        <div>Arrow Down</div>
+                                    )}
+                                </Typography>
+                            </CardContent>
+                        </Card>
                     </Grid>
-                </div>
-            </div>
-        )
+                ))}
+            </Grid>
+        </div>
     )
 }
 
-export default Stocklist
+export default StockList
