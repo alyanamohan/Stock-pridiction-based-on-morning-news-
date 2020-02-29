@@ -8,14 +8,20 @@ import com.paralleldots.paralleldots.App;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+import yahoofinance.histquotes.Interval;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * Hello world!
  */
+
 public class NLPProcessor {
     private static List<Probabilities> parseObjectArray(JSONArray array) {
 
@@ -30,6 +36,7 @@ public class NLPProcessor {
 
 
             list.add(obj);
+
         }
 
         return list;
@@ -59,6 +66,23 @@ public class NLPProcessor {
         sentiment x = mapper.readValue(sentiment_batch, sentiment.class);
         Probabilities[] r = x.sentiment;
         System.out.println(r[0].positive);
+
+        Stock stock = YahooFinance.get("INTC");
+
+        BigDecimal price = stock.getQuote().getPrice();
+        BigDecimal change = stock.getQuote().getChangeInPercent();
+        BigDecimal peg = stock.getStats().getPeg();
+        BigDecimal dividend = stock.getDividend().getAnnualYieldPercent();
+
+        stock.print();
+
+        Calendar from = Calendar.getInstance();
+        Calendar to = Calendar.getInstance();
+        from.add(Calendar.YEAR, -5); // from 5 years ago
+
+        Stock google = YahooFinance.get("GOOG", from, to, Interval.WEEKLY);
+
+        google.print();
     }
 }
 
