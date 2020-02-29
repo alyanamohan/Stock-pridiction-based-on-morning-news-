@@ -3,12 +3,9 @@ import json
 
 class Article:
 
-    def __init__(self, url, headline, weight, webpage_text="", tickers=[], paragraphs=[]):
+    def __init__(self, url, headline, weight, webpage_text="", tickers="", paragraphs=[]):
         self.webpage_text = webpage_text
         self.tickers = tickers
-    def __init__(self, url, headline, weight, webpage_text="", ticker="", paragraphs=[]):
-        self.webpage_text = webpage_text
-        self.ticker = ticker
         self.url = url
         self.headline = headline
         self.paragraphs = paragraphs
@@ -18,18 +15,18 @@ class Article:
         return json.dumps({
             "text": self.webpage_text,
             "tickers": self.tickers,
-            "ticker": self.ticker,
             "url": self.url,
             "headline": self.headline,
-            "paragraphs": self.paragraphs
+            "paragraphs": self.paragraphs,
+            "weight": self.weight
         })
 
     def toObj(self):
         return {
             "text": self.webpage_text,
             "tickers": self.tickers,
-            "ticker": self.ticker,
             "url": self.url,
             "headline": self.headline,
-            "paragraphs": self.paragraphs
+            "paragraphs": self.paragraphs,
+            "weight": self.weight
         }

@@ -6,12 +6,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from article import Article
 from ticker import Ticker
+from paragraph import Paragraph
+import ahocorasick
+import json
 
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
 
-def get_forbes_URLs():
+def get_forbes_articles():
 
     browser.get(('https://www.forbes.com/money/'))
+    print('Getting forbes URLs')
 
     # headline article
     headline_card = browser.find_element_by_xpath('/html/body/div[1]/main/div/section/div/div/div[1]/div[1]/h2')
@@ -43,16 +47,22 @@ def get_forbes_URLs():
         href = a.get_attribute('href')
         articles.append(Article(href, a.text, .2))
 
+    print('Article URLs successfully retrieved')
     return articles
 
 def populate_companies():
 
+    print('Parsing list of companies...')
     browser.get('https://www.value.today/world-stock-news/world-top-1000-companies-list-market-cap-july-1st-2019')
 
-    company_names = {'S&P': True, 'Dow Jones': True}
+    company_names = [' S&P ', ' S&P.', 'S&P,', ' DOW ', ' DOW,', ' DOW.', ' GOOGLE ', ' GOOGLE,', ' GOOGLE.', 'ALPHABET.', ' ALPHABET ', 'ALPHABET,']
+    A = ahocorasick.Automaton()
 
     companies_table = browser.find_element_by_xpath('//*[@id="block-creative-responsive-theme-content"]/div/div/div[2]/table[1]/tbody')
     companies_list = companies_table.find_elements_by_tag_name('tr')
+
+    blacklist = ['TOTAL', 'SNAP', 'BOOKING', 'CREDIT', 'MATCH']
+
     for company in companies_list:
         company_name_point = company.find_elements_by_tag_name('td')
         try:
@@ -111,21 +121,32 @@ def populate_companies():
             if 'SOLUTION' in company_name:
                 company_name = company_name[:company_name.find('SOLUTION') - 1]
 
-            if len(company_name) is 0 or len(company_name) is 1:
+            if len(company_name) is 0 or len(company_name) is 1 or (company_name in blacklist):
                 continue
+            elif company_name == 'AMERICAN':
+                company_name = 'AMERICAN AIRLINES'
         except:
             continue
 
-        company_names[company_name] = True
+        company_name = ' ' + company_name
+        company_names.append(company_name + ' ')
+        company_names.append(company_name + '.')
+        company_names.append(company_name + ',')
 
-    print(len(company_names))
+    company_names = list(dict.fromkeys(company_names))
+
+    print('Company Names Successfully Parsed...')
+    for idx, key in enumerate(company_names):
+        A.add_word(key, idx)
+
+    A.make_automaton()
+    print('Automaton generated')
+    return (company_names, A)
 
 
 
-def retrieve_forbes_article_data(article):
+def retrieve_forbes_article_data(article, company_list, company_name_automaton):
 
-    article_text = ''
-    article_ticker = ''
     article.paragraphs = []
 
     browser.get((article.url))
@@ -136,28 +157,55 @@ def retrieve_forbes_article_data(article):
     except:
         return
 
-    #dow_jones = False
-    #sp500 = False
+    all_tickers = []
 
     for paragraph in article_paragraph_tags:
 
         if '[+]' in paragraph.text:
             continue
+        tickers = []
+        for end_index, idx in company_name_automaton.iter(paragraph.text.upper()):
+            company_formatted = company_list[idx]
+            company_formatted = company_formatted[1:]
+            company_formatted = company_formatted[:-1]
+            tickers.append(company_formatted)
 
-        #if (not dow_jones) and 'Dow Jones' in paragraph.text:
-        #    article.tickers.append('DJI')
-        #elif (not sp500) and 'S&P' in paragraph.text:
-        #    article.tickers.append('GSPC')
-
-
-        article.paragraphs.append(paragraph.text)
+        all_tickers.extend(tickers)
+        article.paragraphs.append(Paragraph(paragraph.text, tickers))
         article.webpage_text = article.webpage_text + paragraph.text
 
-
+    article.tickers = all_tickers
+    article.tickers = list(dict.fromkeys(article.tickers))
+    return article
 
 #forbes_URLs = get_forbes_URLs()
 #for article in forbes_URLs:
 #    retrieve_forbes_article_data(article)
 #    print(article.paragraphs)
 
-populate_companies()
+
+
+article_list = get_forbes_articles()
+new_article_list = []
+companies = populate_companies()
+companies_names_list = companies[0]
+companies_automaton = companies[1]
+
+app_tickers = []
+for article in article_list:
+    new_article = retrieve_forbes_article_data(article, companies_names_list, companies_automaton)
+    app_tickers.extend(new_article.tickers)
+    new_article.paragraphs = [p.toJson() for p in new_article.paragraphs]
+    new_article_list.append(new_article.toJson())
+
+app_tickers = list(dict.fromkeys(app_tickers))
+
+json_obj = json.dumps({
+'all_tickers': app_tickers,
+'articles': new_article_list
+})
+print(type(json_obj))
+
+articles_file = open(r"articles.json","a")
+articles_file.write(json_obj)
+articles_file.close()
