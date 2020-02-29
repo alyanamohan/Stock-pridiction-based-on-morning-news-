@@ -3,12 +3,13 @@ import json
 
 class Article:
 
-    def __init__(self, url, headline, webpage_text="", ticker="", paragraphs=[]):
+    def __init__(self, url, headline, weight, webpage_text="", ticker="", paragraphs=[]):
         self.webpage_text = webpage_text
         self.ticker = ticker
         self.url = url
         self.headline = headline
         self.paragraphs = paragraphs
+        self.weight = weight
 
     def toJson(self):
         return json.dumps({
