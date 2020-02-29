@@ -42,6 +42,11 @@
       <artifactId>paralleldots</artifactId>
       <version>1.0.2</version>
     </dependency>
+
+    <dependency>
+      Complex.java
+    </dependency>
+
     <dependency>
       <groupId>com.yahoofinance-api</groupId>
       <artifactId>YahooFinanceAPI</artifactId>

@@ -74,15 +74,17 @@ public class NLPProcessor {
         BigDecimal peg = stock.getStats().getPeg();
         BigDecimal dividend = stock.getDividend().getAnnualYieldPercent();
 
-        stock.print();
+       stock.print();
+        System.out.println(r[0].positive);
 
-        Calendar from = Calendar.getInstance();
+       /* Calendar from = Calendar.getInstance();
         Calendar to = Calendar.getInstance();
         from.add(Calendar.YEAR, -5); // from 5 years ago
 
         Stock google = YahooFinance.get("GOOG", from, to, Interval.WEEKLY);
 
-        google.print();
+        google.print();*/
+
     }
 }
 
