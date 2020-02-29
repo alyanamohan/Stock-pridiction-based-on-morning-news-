@@ -3,7 +3,7 @@ import json
 
 class Article:
 
-    def __init__(self, webpage_text, ticker, url, headline):
+    def __init__(self, url, headline, webpage_text="", ticker=""):
         self.webpage_text = webpage_text
         self.ticker = ticker
         self.url = url
