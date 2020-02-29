@@ -1,33 +1,125 @@
-/*
- * File: /src/styles/App.scss
- * File Created: Thursday, 12th December 2019 8:18:58 pm
- * Author: Alex Chomiak 
- * 
- * Last Modified: Sunday, 5th January 2020 3:31:15 pm
- * Modified By: Alex Chomiak 
- * 
- * Author Github: https://github.com/alexchomiak
- */
-
-// * Import globals
-@import './globals';
-
-// * Import animations
-@import './animations';
-
-// * Import App Styles
-@import 'App.scss';
-
-// * Import page styles
-@import './pages/Home';
-@import './pages/Setup';
-@import './pages/Fork';
-
-// * Import individual component styles, you can import components here
-// * or import the scss in the component files themselves. But if you do that
-// * remember to import the globals in those individual scss files to make use of them!
-// * You can import the globals with: @import "@styles/globals";
-@import './components/Header';
-@import './components/Navbar';
-@import './components/Page';
-@import './components/Footer';
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+body {
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ol,
+ul {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
