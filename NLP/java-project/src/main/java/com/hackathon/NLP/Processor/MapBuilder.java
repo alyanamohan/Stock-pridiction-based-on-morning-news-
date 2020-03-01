@@ -22,14 +22,17 @@ public class MapBuilder {
     public Map<String, Probabilities> build() throws Exception {
         Map<String, Probabilities> stocks = new TreeMap<>();;
         StockInfoPost retrievedData = ArticleParser.parse();
-        for(Article article: retrievedData.articles){
-            TimeUnit.SECONDS.sleep(30);
-            Probabilities probability = NLPProcessor.process(article.paragraphs.get(0).text);
-                for(String t: article.paragraphs.get(0).ticker){
-                    stocks.put(t,probability);
+
+            for (int i = 0; i < 10; i++) {
+                Article article = retrievedData.articles.get(i);
+                TimeUnit.SECONDS.sleep(35);
+                Probabilities probability = NLPProcessor.process(article.paragraphs.get(0).text);
+                for (String t : article.paragraphs.get(0).ticker) {
+                    stocks.put(t, probability);
                     tickers.add(t);
                 }
-            }
+
+        }
         return stocks;
     }
     public List<String> buildTickers() throws Exception {

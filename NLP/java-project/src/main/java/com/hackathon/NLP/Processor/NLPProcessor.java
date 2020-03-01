@@ -23,6 +23,10 @@ import static oracle.jrockit.jfr.events.Bits.doubleValue;
 /**
  * Hello world!
  */
+/*
+ at [Source: (String)"{"sentiment":[{"negative":0.245,"neutral":0.348,"positive":0.407},{"negative":0.891,"neutral":0.076,"positive":0.033},{"negative":0.796,"neutral":0.157,"positive":0.047},{"negative":0.825,"neutral":0.106,"positive":0.069},{"negative":0.76,"neutral":0.138,"positive":0.102},{"negative":0.045,"neutral":0.516,"positive":0.439},{"negative":0.009,"neutral":0.396,"positive":0.595},{"negative":0.872,"neutral":0.098,"positive":0.03},{"negative":0.085,"neutral":0.413,"positive":0.502},{"negative":0.622,"n"[truncated 3242 chars]; line: 1, column: 854] (through reference chain: com.hackathon.NLP.Models.sentiment["sentiment"]->java.lang.Object[][16]->com.hackathon.NLP.Models.Probabilities["code"])
+
+ */
 
 public class NLPProcessor {
     private static List<Probabilities> parseObjectArray(JSONArray array) {
@@ -43,7 +47,8 @@ public class NLPProcessor {
 
         return list;
     }
-//    private static sentiment parseFooArray(JSONObject obj) {
+
+    //    private static sentiment parseFooArray(JSONObject obj) {
 //
 //        List<sentiment> list = new ArrayList<>();
 //
@@ -67,28 +72,33 @@ public class NLPProcessor {
 
 
     }
+
     public static Probabilities process(String toParse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        App pd = new App("ysI8xgSI1UTPyLzuv0Wh4qXh4SdXWzAVA3k1xh1NP6I");
+        App pd = new App("mLcvp2SKvgnBDAW2NmCeBwPmZMpfHnJZnHXDkVXkbuY");
         JSONParser parser = new JSONParser();
         String[] parsedString = toParse.split("(?<=[a-z])\\.\\s+");
         JSONArray jsArray = new JSONArray();
         jsArray.addAll(Arrays.asList(parsedString));
-        Probabilities overAll = new Probabilities(0,0,0);
+        Probabilities overAll = new Probabilities(0, 0, 0);
         String sentiment_batch = pd.sentiment_batch(jsArray);
-        sentiment retrieved = mapper.readValue(sentiment_batch, sentiment.class);
+        System.out.println(sentiment_batch);
+
+        JSONArray sentiment = (JSONArray) ((JSONObject) parser.parse(sentiment_batch)).get("sentiment");
+
+        for (Object o : sentiment) {
+            JSONObject subParse = (JSONObject) parser.parse(o.toString());
+            overAll.positive += ((Number) subParse.get("positive")).floatValue();
+            overAll.neutral += ((Number) subParse.get("neutral")).floatValue();
+            overAll.negative += ((Number) subParse.get("negative")).floatValue();
+        }
+
 
 //        overAll.probabilities.positive =  0;
 //        overAll.probabilities.neutral =  0;
 //        overAll.probabilities.negative = 0;
 
-        for(Probabilities current: retrieved.sentiment){
-            overAll.positive+= current.positive;
-            overAll.negative+= current.negative;
-            overAll.neutral+= current.neutral;
-        }
         return overAll;
-
 
 
 //        JSONArray text_list = (JSONArray)parser.parse(toParse);
