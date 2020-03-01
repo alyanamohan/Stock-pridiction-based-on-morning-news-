@@ -19,4 +19,12 @@ Due to the vast size of this project, and the limited time we had, high levels o
 # What's next for IntelliVast
 In order to improve the accuracy of our stock predictions, we would like to develop web scrapers for more reputable news platforms in order to increase our sample size. We would also like to train our NLP model specifically on finance articles given that certain words have different connotations within the context of finance. Now that we have more time to do so, we plan on adding our new features and testing it on a fake stocks account with Investopedia. Once we are satisfied with the results of our algorithm, we would like to allow it to control a portion of our stock holdings, and slowly increment or decrement its holdings based on its performance.
 
+![Slide 1](https://raw.githubusercontent.com/alexchomiak/hack-illinois/master/presentation-slides/slide-1.png)
+![Slide 2](https://raw.githubusercontent.com/alexchomiak/hack-illinois/master/presentation-slides/slide-2.png)
+![Slide 3](https://raw.githubusercontent.com/alexchomiak/hack-illinois/master/presentation-slides/slide-3.png)
+![Slide 4](https://raw.githubusercontent.com/alexchomiak/hack-illinois/master/presentation-slides/slide-4.png)
+![Slide 5](https://raw.githubusercontent.com/alexchomiak/hack-illinois/master/presentation-slides/slide-5.png)
+![Slide 6](https://raw.githubusercontent.com/alexchomiak/hack-illinois/master/presentation-slides/slide-6.png)
+![Slide 7](https://raw.githubusercontent.com/alexchomiak/hack-illinois/master/presentation-slides/slide-7.png)
+
 
