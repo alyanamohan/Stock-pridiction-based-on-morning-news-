@@ -15,6 +15,10 @@ import java.util.List;
 /**
  * Hello world!
  */
+/*
+ at [Source: (String)"{"sentiment":[{"negative":0.245,"neutral":0.348,"positive":0.407},{"negative":0.891,"neutral":0.076,"positive":0.033},{"negative":0.796,"neutral":0.157,"positive":0.047},{"negative":0.825,"neutral":0.106,"positive":0.069},{"negative":0.76,"neutral":0.138,"positive":0.102},{"negative":0.045,"neutral":0.516,"positive":0.439},{"negative":0.009,"neutral":0.396,"positive":0.595},{"negative":0.872,"neutral":0.098,"positive":0.03},{"negative":0.085,"neutral":0.413,"positive":0.502},{"negative":0.622,"n"[truncated 3242 chars]; line: 1, column: 854] (through reference chain: com.hackathon.NLP.Models.sentiment["sentiment"]->java.lang.Object[][16]->com.hackathon.NLP.Models.Probabilities["code"])
+
+ */
 
 public class NLPProcessor {
     private static List<Probabilities> parseObjectArray(JSONArray array) {
@@ -59,7 +63,7 @@ public class NLPProcessor {
     }
     public static Probabilities process(String toParse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        App pd = new App("ysI8xgSI1UTPyLzuv0Wh4qXh4SdXWzAVA3k1xh1NP6I");
+        App pd = new App("mLcvp2SKvgnBDAW2NmCeBwPmZMpfHnJZnHXDkVXkbuY");
         JSONParser parser = new JSONParser();
         String[] parsedString = toParse.split("(?<=[a-z])\\.\\s+");
         JSONArray jsArray = new JSONArray();

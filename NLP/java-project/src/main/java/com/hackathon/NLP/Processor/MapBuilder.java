@@ -21,7 +21,7 @@ public class MapBuilder {
         Map<String, Probabilities> stocks = new TreeMap<>();;
         StockInfoPost retrievedData = ArticleParser.parse();
         for(Article article: retrievedData.articles){
-            TimeUnit.SECONDS.sleep(30);
+            TimeUnit.SECONDS.sleep(20);
             Probabilities probability = NLPProcessor.process(article.paragraphs.get(0).text);
                 for(String t: article.paragraphs.get(0).ticker){
                     stocks.put(t,probability);
