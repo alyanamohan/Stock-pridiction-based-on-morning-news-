@@ -6,6 +6,7 @@ import com.hackathon.NLP.Models.Probabilities;
 import com.hackathon.NLP.Requests.StockInfoPost;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ public class MapBuilder {
 //    public static void main(String[] s) throws Exception {
 //        build();
 //    }
+    List<String> tickers;
 
     public Map<String, Probabilities> build() throws Exception {
         Map<String, Probabilities> stocks = new TreeMap<>();;
@@ -27,9 +29,14 @@ public class MapBuilder {
                 Probabilities probability = NLPProcessor.process(article.paragraphs.get(0).text);
                 for (String t : article.paragraphs.get(0).ticker) {
                     stocks.put(t, probability);
+                    tickers.add(t);
                 }
 
         }
         return stocks;
     }
+    public List<String> buildTickers() throws Exception {
+        return tickers;
+    }
+
 }
