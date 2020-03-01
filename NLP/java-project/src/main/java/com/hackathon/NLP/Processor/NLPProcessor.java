@@ -65,7 +65,7 @@ public class NLPProcessor {
 
     public static Probabilities process(String toParse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        App pd = new App("mLcvp2SKvgnBDAW2NmCeBwPmZMpfHnJZnHXDkVXkbuY");
+        App pd = new App("ylyQhvkEe5A99NJPfBuxrx4zz3arwnfo1YLL3esGCws");
         JSONParser parser = new JSONParser();
         String[] parsedString = toParse.split("(?<=[a-z])\\.\\s+");
         JSONArray jsArray = new JSONArray();
