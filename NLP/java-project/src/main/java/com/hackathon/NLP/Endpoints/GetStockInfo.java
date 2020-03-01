@@ -1,5 +1,6 @@
 package com.hackathon.NLP.Endpoints;
 
+import com.hackathon.NLP.Processor.Driver;
 import com.hackathon.NLP.Responses.StockResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -16,7 +17,7 @@ public class GetStockInfo {
         StockResponse test = new StockResponse("test1","test2","test3",1,.5);
         try {
             get("/GetStockInfo", (req, res) -> {
-                return objectMapper.writeValueAsString(test);
+                return objectMapper.writeValueAsString((new Driver().drive()));
             });
 
         }

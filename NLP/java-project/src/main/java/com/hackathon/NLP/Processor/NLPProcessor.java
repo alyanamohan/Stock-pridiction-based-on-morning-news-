@@ -39,7 +39,8 @@ public class NLPProcessor {
 
         return list;
     }
-//    private static sentiment parseFooArray(JSONObject obj) {
+
+    //    private static sentiment parseFooArray(JSONObject obj) {
 //
 //        List<sentiment> list = new ArrayList<>();
 //
@@ -61,6 +62,7 @@ public class NLPProcessor {
 //            System.out.println(answer[i]);
 //        }
     }
+
     public static Probabilities process(String toParse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         App pd = new App("mLcvp2SKvgnBDAW2NmCeBwPmZMpfHnJZnHXDkVXkbuY");
@@ -68,21 +70,25 @@ public class NLPProcessor {
         String[] parsedString = toParse.split("(?<=[a-z])\\.\\s+");
         JSONArray jsArray = new JSONArray();
         jsArray.addAll(Arrays.asList(parsedString));
-        Probabilities overAll = new Probabilities(0,0,0);
+        Probabilities overAll = new Probabilities(0, 0, 0);
         String sentiment_batch = pd.sentiment_batch(jsArray);
-        sentiment retrieved = mapper.readValue(sentiment_batch, sentiment.class);
+        System.out.println(sentiment_batch);
+
+        JSONArray sentiment = (JSONArray) ((JSONObject) parser.parse(sentiment_batch)).get("sentiment");
+
+        for (Object o : sentiment) {
+            JSONObject subParse = (JSONObject) parser.parse(o.toString());
+            overAll.positive += ((Number) subParse.get("positive")).floatValue();
+            overAll.neutral += ((Number) subParse.get("neutral")).floatValue();
+            overAll.negative += ((Number) subParse.get("negative")).floatValue();
+        }
+
 
 //        overAll.probabilities.positive =  0;
 //        overAll.probabilities.neutral =  0;
 //        overAll.probabilities.negative = 0;
 
-        for(Probabilities current: retrieved.sentiment){
-            overAll.positive+= current.positive;
-            overAll.negative+= current.negative;
-            overAll.neutral+= current.neutral;
-        }
         return overAll;
-
 
 
 //        JSONArray text_list = (JSONArray)parser.parse(toParse);
