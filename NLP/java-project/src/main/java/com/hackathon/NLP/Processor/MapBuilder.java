@@ -29,7 +29,7 @@ public class MapBuilder {
                 Probabilities probability = NLPProcessor.process(article.paragraphs.get(0).text);
                 for (String t : article.paragraphs.get(0).ticker) {
                     stocks.put(t, probability);
-                    tickers.add(t);
+                    //tickers.add(t);
                 }
 
         }
