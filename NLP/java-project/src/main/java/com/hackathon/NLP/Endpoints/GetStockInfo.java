@@ -19,9 +19,6 @@ public class GetStockInfo {
                 return objectMapper.writeValueAsString(test);
             });
 
-            get("/PostStockInfo", (req, res) -> {
-                return "testing";
-            });
         }
         catch(Exception e){
 //            e.getStackTrace();
