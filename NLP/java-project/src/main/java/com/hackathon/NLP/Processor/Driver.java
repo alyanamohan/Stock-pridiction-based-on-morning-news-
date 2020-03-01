@@ -13,25 +13,22 @@ import java.util.*;
 import static oracle.jrockit.jfr.events.Bits.doubleValue;
 
 public class Driver {
+
     private static FileWriter file;
     public static void main(String[] args) throws Exception {
-        ArrayList<String> x = drive();
-        for(String r : x){
-            System.out.println(r);
-        }
-       try{
-           file = new FileWriter("results.json");
-           for(String r: x){
-               file.write(r + System.lineSeparator());
-           }
-           file.close();
-       }
-       catch (Exception e){
-           e.printStackTrace();
-       }
 
-
+      ArrayList<String> x = drive();
+      try {
+        file = new FileWriter("results.json");
+        for (String r : x) {
+          file.write(r + System.lineSeparator());
+        }
+        file.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
+
     public static ArrayList<String> drive() throws Exception {
         Map<String, Probabilities> probabilitiesMap = (new MapBuilder().build());
         List<String> tickers = (new MapBuilder().buildTickers());
