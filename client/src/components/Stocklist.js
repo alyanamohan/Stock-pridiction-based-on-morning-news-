@@ -9,139 +9,68 @@ import StockInfo from 'components/StockInfo'
 
 const seedData = [
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'AAPL',
+        name: 'Apple',
         currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.4,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        price: 200.52,
+        confidence: 0.9,
+        trend: 0.8
     },
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'AMD',
+        name: 'AMD',
         currency: 'USD',
-        price: 55.52,
+        price: 43.52,
         confidence: 1,
-        trend: 0.45,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        trend: 0.45
     },
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'XOM',
+        name: 'Exxon Mobil',
         currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.4,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        price: 95.52,
+        confidence: 0.9,
+        trend: 0.6
     },
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'INDEXSP',
+        name: 'S&P 500 Index',
         currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.45,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        price: 2954.22,
+        confidence: 0.51,
+        trend: 0.3
     },
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'NASDAQ',
+        name: 'NASDAQ',
         currency: 'USD',
-        price: 55.52,
+        price: 8567.37,
         confidence: 1,
-        trend: 0.4,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        trend: 0.4
     },
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'DJI',
+        name: 'Dow Jones',
         currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.45,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        price: 25409.36,
+        confidence: 0.8,
+        trend: 0.65
     },
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'MSFT',
+        name: 'Microsoft Corporation',
         currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.4,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        price: 162.01,
+        confidence: 0.9,
+        trend: 0.54
     },
     {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
+        symbol: 'AMZN',
+        name: 'Amazon.com, Inc',
         currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.45,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
-    },
-    {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
-        currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.9,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
-    },
-    {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
-        currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.9,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
-    },
-    {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
-        currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.9,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
-    },
-    {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
-        currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 0.6,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
-    },
-    {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
-        currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 5.9,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
-    },
-    {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
-        currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 2.9,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
-    },
-    {
-        symbol: 'ITNL',
-        name: 'Intel Corporation',
-        currency: 'USD',
-        price: 55.52,
-        confidence: 1,
-        trend: 1.9,
-        articles: [{ url: 'https://forbes.com', title: 'Apple is sick', weight: 1.0 }]
+        price: 1883.75,
+        confidence: 0.9,
+        trend: 0.6
     }
 ]
 
