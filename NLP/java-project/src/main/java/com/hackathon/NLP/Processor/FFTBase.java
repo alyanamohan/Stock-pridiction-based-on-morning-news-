@@ -12,6 +12,10 @@ class FFTbase {
      *            TRUE = direct transform, FALSE = inverse transform
      * @return a new array of length 2n
      */
+
+
+
+
     public static double[] fft(final double[] inputReal, double[] inputImag,
                                boolean DIRECT) {
         // - n is the dimension of the problem
