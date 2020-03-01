@@ -7,10 +7,18 @@ import com.paralleldots.paralleldots.App;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+import yahoofinance.histquotes.HistoricalQuote;
+import yahoofinance.histquotes.Interval;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+
+import static oracle.jrockit.jfr.events.Bits.doubleValue;
 
 /**
  * Hello world!
@@ -56,6 +64,8 @@ public class NLPProcessor {
 //        for(int i =0; i < answer.length; i++){
 //            System.out.println(answer[i]);
 //        }
+
+
     }
     public static Probabilities process(String toParse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
@@ -100,13 +110,7 @@ public class NLPProcessor {
 //       stock.print();
 //        System.out.println(r[0].positive);
 
-       /* Calendar from = Calendar.getInstance();
-        Calendar to = Calendar.getInstance();
-        from.add(Calendar.YEAR, -5); // from 5 years ago
 
-        Stock google = YahooFinance.get("GOOG", from, to, Interval.WEEKLY);
-
-        google.print();*/
 
     }
 }
