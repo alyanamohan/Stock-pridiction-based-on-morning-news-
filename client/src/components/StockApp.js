@@ -8,7 +8,9 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(({ spacing, palette }) => ({
     root: {
         width: '100%',
-        textAlign: 'center'
+        textAlign: 'center',
+        alignContent: 'center',
+        alignItems: 'center'
     }
 }))
 
@@ -17,10 +19,6 @@ const StockApp = props => {
 
     return (
         <div className={classes.root}>
-            <Typograpgh variant="h4" component="h2">
-                Stock Predictions
-            </Typograpgh>
-
             <StockList />
         </div>
     )
